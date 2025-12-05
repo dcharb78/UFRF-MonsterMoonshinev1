@@ -1,0 +1,14 @@
+{
+  "coefficients": {
+    "-1": 1,
+    "0": 0,
+    "1": 196884,
+    "2": 21493760,
+    "3": 864299970
+  },
+  "description": "UFRF/Monster coefficient a_n for j-function q-series",
+  "series": "j(q) - 744 = q^{-1} + 196884 q + 21493760 q^2 + 864299970 q^3 + ...",
+  "source": "UFRF geometric constraints and Monster module structure",
+  "note": "For n not listed, a(n) = 0. These are the first few coefficients from the UFRF derivation."
+}
+

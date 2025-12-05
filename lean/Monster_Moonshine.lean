@@ -425,6 +425,20 @@ theorem monster_order_contains_boundary_primes :
   p.p6 ∣ monster_order ∧ p.p7 ∣ monster_order ∧ p.p8 ∣ monster_order := by
   simp [monster_primes, monster_order]
 
+-- Monster/Monster Moonshine coefficients a_n for j-function
+-- j(q) = q^{-1} + 744 + 196884 q + 21493760 q^2 + 864299970 q^3 + ...
+-- So j(q) - 744 = q^{-1} + 196884 q + 21493760 q^2 + 864299970 q^3 + ...
+-- Therefore: a(-1) = 1, a(0) = 0, a(1) = 196884, a(2) = 21493760, etc.
+
+def monster_coeff (n : ℤ) : ℤ :=
+  match n with
+  | -1 => 1
+  | 0 => 0
+  | 1 => 196884
+  | 2 => 21493760
+  | 3 => 864299970
+  | _ => 0  -- For now, return 0 for unknown coefficients
+
 -- j-function first coefficient
 def j1 : ℕ := 744
 
