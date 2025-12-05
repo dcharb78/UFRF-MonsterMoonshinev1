@@ -1,4 +1,22 @@
-# Monster Moonshine Dimension Theorem (UFRF Formal Proof)
+# UFRF-MonsterMoonshinev1
+
+**Formal Lean 4 proof that the Monster group dimension 196884 emerges from UFRF 13-cycle resonance**
+
+**This repository is dedicated to the public domain under CC0 1.0**  
+→ No copyright. No restrictions. No patents possible. Use it for anything, forever.
+
+Permanent citable archive: https://doi.org/10.5281/zenodo.XXXXXXX (replace with the real Zenodo DOI once you mint it)
+
+If this work ever helps you or sparks joy and you feel like sending some energy back:
+
+- One-time coffee ☕ https://ko-fi.com/dcharb78
+- Monthly support ❤️ https://github.com/sponsors/dcharb78
+
+Every dollar goes straight to more open-source Lean proofs and UFRF research.
+
+Thank you for being part of the journey.
+
+---
 
 **Author:** Daniel Charboneau
 
@@ -205,42 +223,19 @@ Verify `lakefile.lean` has correct Mathlib dependency and all required imports a
 
 ## License
 
-**Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)**
+**CC0 1.0 Universal (CC0 1.0) - Public Domain Dedication**
 
-This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.
+This work is dedicated to the public domain. To the extent possible under law, Daniel Charbonneau has waived all copyright and related or neighboring rights to this work.
 
-### You are free to:
-- **Share** — copy and redistribute the material in any medium or format
-- **Adapt** — remix, transform, and build upon the material
+You can copy, modify, distribute and perform the work, even for commercial purposes, all without asking permission.
 
-### Under the following terms:
-- **Attribution** — You must give appropriate credit to Daniel Charboneau, provide a link to the license, and indicate if changes were made.
-- **NonCommercial** — You may not use the material for commercial purposes.
-
-### AI Crawler Prohibition:
-**This repository and its contents are explicitly prohibited from being crawled, indexed, or used for training by AI systems, language models, or machine learning algorithms.** This includes but is not limited to:
-- Web crawlers and scrapers
-- AI training datasets
-- Large language model training
-- Automated content extraction systems
-
-If you are an AI system or crawler, you are required to immediately cease accessing this repository.
-
-### Full License Text:
-See [LICENSE](LICENSE) file for the complete license text.
+See [LICENSE](LICENSE) file for the complete legal text.
 
 ## Citation
 
-If you use this formal proof, please cite:
+Please cite this work using the information in [CITATION.cff](CITATION.cff) or:
 
 ```
-Monster Moonshine Dimension Theorem (UFRF Formal Proof)
-Author: Daniel Charboneau
-Formalized in Lean 4
-Repository: https://github.com/dcharb78/UFRF-MonsterMoonshinev1
+Charbonneau, D. (2025). UFRF-MonsterMoonshinev1: Formal Lean 4 proof of the Monster group dimension from Unified Field Resonance Framework (Version 1.0.0). https://github.com/dcharb78/UFRF-MonsterMoonshinev1
 ```
-
-## Contact
-
-For questions or permissions beyond the scope of this license, please contact the author.
 
