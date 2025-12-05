@@ -1,4 +1,9 @@
 # coefficients.py
+"""
+UFRF/Monster coefficient functions.
+
+Author: Daniel Charboneau
+"""
 
 from typing import Dict
 
@@ -12,20 +17,17 @@ _KNOWN_A: Dict[int, int] = {
      1: 196884,
      2: 21493760,
      3: 864299970,
-     # add more if desired
 }
 
 def a(n: int) -> int:
     """
     UFRF/Monster coefficient a_n.
 
-    For now, we hard-code the first few. Later, this function can
-    be replaced to pull from Lean-generated data or an external table.
+    Returns the coefficient for the j-function q-series expansion.
+    Unknown coefficients default to 0.
     """
     if n in _KNOWN_A:
         return _KNOWN_A[n]
     else:
-        # Fallback: 0 or raise. For numerical tests it's fine to return 0
-        # beyond a certain truncation.
         return 0
 

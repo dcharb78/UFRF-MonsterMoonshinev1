@@ -1,4 +1,9 @@
 # partition.py
+"""
+UFRF partition function Z(τ) and j-function q-series evaluation.
+
+Author: Daniel Charboneau
+"""
 
 from typing import Union
 from mpmath import mp

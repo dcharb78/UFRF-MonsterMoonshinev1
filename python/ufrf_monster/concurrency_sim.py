@@ -1,4 +1,9 @@
 # concurrency_sim.py
+"""
+Multi-scale concurrency simulation and bounded-gap analysis.
+
+Author: Daniel Charboneau
+"""
 
 from typing import List, Set, Tuple
 from math import gcd
@@ -45,7 +50,7 @@ def analyze_concurrency(L: int, active_flags: List[bool]) -> Tuple[int, bool]:
             current_run += 1
             if current_run > max_run:
                 max_run = current_run
-    # crude periodicity check over first 2L steps if available
+    # Periodicity check over first 2L steps if available
     periodic = False
     if len(active_flags) >= 2 * L:
         periodic = (active_flags[:L] == active_flags[L:2*L])

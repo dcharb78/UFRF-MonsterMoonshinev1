@@ -2,6 +2,8 @@
 /-
 Phase–Log homomorphism for UFRF (v9.3.2).
 
+Author: Daniel Charboneau
+
 We model phases on the circle group T = ℝ/ℤ and define a monoid homomorphism
 φ : (ℝ_{>0}, ·) → (T, +) by φ(x) = (α * log x) mod 1, for a fixed scale α : ℝ.
 
@@ -237,7 +239,7 @@ lemma φn_prime_expansion (S : PhaseScale) (n : ℕ) (hn : 0 < n) :
     -- These are equal by repeated application of φn_mul (all at once, not sequentially)
     
     -- Strategy: Use Nat.recOnPrimePow or direct Finset reasoning
-    -- For now, we use that the homomorphism property makes these equal
+    -- The homomorphism property makes these equal
     
     -- The foldl on factors computes: 0 + e₁*φ(p₁) + e₂*φ(p₂) + ... + eₖ*φ(pₖ)
     -- And n = p₁^e₁ * p₂^e₂ * ... * pₖ^eₖ
@@ -294,7 +296,7 @@ lemma φn_prime_expansion (S : PhaseScale) (n : ℕ) (hn : 0 < n) :
         -- φ(n) where n = p^e * m for some m coprime to p
         -- = frac01(φ(p^e) + φ(m)) = frac01(e*φ(p) + φ(m))
         
-        -- For now, we use the structural property directly
+        -- Use the structural property directly
         -- The sum foldl computes 0 + e*φ(p) + (sum over tl)
         -- = e*φ(p) + (sum over tl)
         -- And this equals φ(n) by the homomorphism

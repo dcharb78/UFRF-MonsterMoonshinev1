@@ -1,5 +1,7 @@
 # UFRF Assumptions and Axioms
 
+**Author:** Daniel Charboneau
+
 This document clarifies the assumptions and axioms used in the UFRF-Monster Moonshine formalization.
 
 ---

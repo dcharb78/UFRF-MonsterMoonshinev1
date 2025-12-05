@@ -1,4 +1,9 @@
 # modular_tests.py
+"""
+Modular invariance tests for Z(τ) and j(τ).
+
+Author: Daniel Charboneau
+"""
 
 from typing import List, Tuple
 from mpmath import mp

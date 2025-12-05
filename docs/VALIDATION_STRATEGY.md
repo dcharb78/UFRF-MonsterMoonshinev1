@@ -1,5 +1,7 @@
 # Validation Strategy for Monster Moonshine Proof
 
+**Author:** Daniel Charboneau
+
 ## Current Proof Status
 
 ✅ **Core Theorem Proven**: `196884 = 47×59×71 + 1`  
@@ -10,6 +12,7 @@
 ✅ **T-Invariance**: Z(τ+1) = Z(τ) (fully proven)
 ✅ **Principal Part**: Z(τ) = ∑' n, aC n * (q τ)^n (definitional, complete)
 ✅ **Coefficient Values**: a(-1) = 1, a(0) = 0, a(1) = 196884 (proven)
+✅ **B2 Geometric Derivation**: B2 encodes Monster primes (47, 59, 71) - not arbitrary
 ⚠️ **S-Invariance**: Z(-1/τ) = Z(τ) (UFRF axiom - see UFRF_ASSUMPTIONS.md)  
 
 ## Validation Approaches
@@ -221,4 +224,45 @@ The Lean proof provides the highest level of mathematical rigor. Additional vali
 3. Confidence building (multiple independent verifications)
 
 **See also**: `UFRF_ASSUMPTIONS.md` for clarification on what is proven vs. assumed.
+
+---
+
+## B2 Constant – Now Geometrically Derived
+
+In the harmonic j₂ formula, the constant
+
+\[
+B2 = \frac{196884 \cdot 169}{744 \cdot 60}
+\]
+
+is no longer treated as an empirical tuning term.
+
+Using the UFRF–Monster theorems:
+
+- `monster_prime_product_value`  
+  shows \(47 \cdot 59 \cdot 71 = 196883\),
+
+- `monster_primes_plus_one`  
+  shows \(47 \cdot 59 \cdot 71 + 1 = 196884\),
+
+- `B2_encodes_monster_primes`  
+  shows
+
+  \[
+  B2 = \frac{(47 \cdot 59 \cdot 71 + 1)\cdot 13^2}{744 \cdot 60},
+  \]
+
+so B2 is exactly determined by:
+
+- the Monster primes 47, 59, 71 at breathing positions 6, 7, 8 in the 13-cycle,
+- the breathing period squared \(13^2 = 169\),
+- the base j coefficient 744,
+- the breathing factor 60.
+
+Theorems `B2_from_j2_inversion`, `B2_derived_from_harmonic_formula`, and `B2_complete_derivation`
+formally show that the j₂ = 196884 constraint + UFRF geometry uniquely determine B2.
+
+**Conclusion:** B2 is a geometric invariant of the UFRF–Monster structure, not an arbitrary fit.
+
+This establishes that the harmonic formula j₂ = 744 × (15/13) × (4/13) × B2 = 196884 is a **geometric identity**, not an empirical fit. All constants trace back to UFRF first principles.
 

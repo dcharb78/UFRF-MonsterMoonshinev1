@@ -1,6 +1,9 @@
 -- lean/Concurrency_BoundedGap.lean
 /-
 Bounded-gap theorem for multi-scale concurrency.
+
+Author: Daniel Charboneau
+
 We model a finite family of cycles with periods pᵢ ≥ 1 and active residue sets Aᵢ ⊆ {0,…,pᵢ−1}.
 Active(t) :↔ ∃i a∈Aᵢ, t ≡ a [MOD pᵢ]. Let L = lcmᵢ pᵢ.
 We prove:

@@ -11,4 +11,9 @@ lake-packages/
 
 # Lean cache
 *.olean
+
+# Archive and cleanup files
 archive/
+CLEANUP_COMPLETE.md
+GITHUB_READY_PLAN.md
+nextsteps/
