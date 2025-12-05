@@ -8,6 +8,7 @@ This directory contains planning documents and validation strategies for the Mon
 - **VALIDATION_STRATEGY.md** - Comprehensive validation approaches and methods
 - **UFRF_ASSUMPTIONS.md** - Clarification of what is proven vs. assumed in the formalization
 - **UFRF_FixedPoint.md** - Fixed-point analysis and implementation notes
+- **B2_Validation_Summary.md** - Detailed explanation of B2 geometric derivation and theorems
 - **MOONSHINE_INEVITABLE.md** - Vision piece on the inevitability of Monster Moonshine within UFRF framework (see B2 geometric derivation in `lean/Monster_Moonshine.lean`)
 
 ### Additional Resources
