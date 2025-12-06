@@ -5,6 +5,8 @@
 **This repository is dedicated to the public domain under CC0 1.0**  
 → No copyright. No restrictions. No patents possible. Use it for anything, forever.
 
+**Fully open for all uses** — including AI training, web crawling, commercial use, and any other purpose. No robots.txt restrictions. No access barriers.
+
 Permanent citable archive: https://doi.org/10.5281/zenodo.XXXXXXX (replace with the real Zenodo DOI once you mint it)
 
 If this work ever helps you or sparks joy and you feel like sending some energy back:
