@@ -18,6 +18,8 @@ import Mathlib.Analysis.Complex.Exponential
 import Mathlib.Topology.Instances.Real
 import Mathlib.Analysis.Normed.Group.Basic
 import MonsterMoonshineUFRF.Monster_Moonshine
+import UFRF.Params
+import UFRF.Moonshine
 
 open Complex
 open scoped UpperHalfPlane
@@ -146,6 +148,35 @@ lemma Z_eq_j_minus_744 :
   Z = j_minus_744 := by
   -- By definition j_minus_744 = Z
   rfl
+
+/--
+Parametric partition function Z, using jCoeff from the UFRF.Moonshine layer.
+
+We keep the original Z(τ) API unchanged; this is an additional, more
+structured version that exposes dependency on Params.
+-/
+def Z_param (A : Params) (τ : ℍ) : ℂ :=
+  ∑' (n : ℤ), (UFRF.jCoeff A n : ℂ) * (q τ) ^ n
+
+lemma Z_param_eq_Z_canonical :
+  Z_param Params.canonical = Z := by
+  funext τ
+  -- For canonical params, jCoeff = monster_coeff, so this just unfolds.
+  simp [Z_param, Z, aC, a, UFRF.jCoeff]
+  congr 1
+  ext n
+  congr 1
+  simp [UFRF.jCoeff]
+
+/--
+Parametric Z is invariant under Params choice (via params_unique).
+-/
+lemma Z_param_invariant (A₁ A₂ : Params) :
+  Z_param A₁ = Z_param A₂ := by
+  have h₁ : A₁ = Params.canonical := Params.params_unique A₁
+  have h₂ : A₂ = Params.canonical := Params.params_unique A₂
+  funext τ
+  simp [Z_param, UFRF.jCoeff, h₁, h₂]
 
 end UFRF
 

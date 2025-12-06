@@ -586,5 +586,32 @@ lemma B2_geometric_identity :
   all constants trace back to UFRF geometry.
 -/
 
+/-! ## Clean API for Params Layer
+
+These definitions expose a clean interface for the UFRF.Params layer.
+The functions monster_coeff and B2 already exist above, so we just add wrapper theorems.
+-/
+
+namespace Monster_Moonshine
+
+/-- Master B₂ constant (wrapper for existing B2). -/
+noncomputable def monster_B2 : ℝ := B2
+
+/-- The standard low-index coefficient facts. -/
+theorem monster_coeff_neg_one : monster_coeff (-1) = 1 := by
+  simp [monster_coeff]
+
+theorem monster_coeff_zero : monster_coeff 0 = 0 := by
+  simp [monster_coeff]
+
+theorem monster_coeff_one : monster_coeff 1 = 196884 := by
+  simp [monster_coeff]
+
+/-- The B₂ numeric identity. -/
+theorem monster_B2_value : monster_B2 = 196884 * 169 / (744 * 60) := by
+  simp [monster_B2, B2]
+
+end Monster_Moonshine
+
 end UFRF
 

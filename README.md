@@ -36,6 +36,7 @@ This repository contains a formal Lean 4 proof that the Monster dimension **1968
 - **`Z_T_invariant`**: Z(τ+1) = Z(τ) (modular T-invariance)
 - **`B2_geometric_identity`**: B2 constant geometrically determined from Monster primes
 - **`j2_harmonic_formula`**: j₂ = 744 × (1 + 2/13) × A(2) × B2
+- **`UFRF.Params.params_unique`**: All UFRF parameters are uniquely determined (no free parameters) — see [NO_FREE_PARAMS.md](NO_FREE_PARAMS.md)
 
 ## Quick Start
 
@@ -86,7 +87,10 @@ UFRF-Moonshine/
 │   └── ufrf_monster/           # Numerical validation and testing
 ├── docs/                        # Documentation
 │   ├── VALIDATION_STRATEGY.md   # Validation approaches
-│   └── UFRF_ASSUMPTIONS.md      # UFRF assumptions and axioms
+│   ├── UFRF_ASSUMPTIONS.md      # UFRF assumptions and axioms
+│   ├── PARAMS_INTEGRATION.md    # Params layer integration notes
+│   └── PARAMS_COMPLETE.md       # Complete Params implementation
+├── NO_FREE_PARAMS.md            # Formal proof: no free parameters
 └── scripts/                     # Build/verification scripts
     └── verify.sh
 ```
