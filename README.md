@@ -82,7 +82,10 @@ UFRF-Moonshine/
 │   ├── Monster_Moonshine.lean   # Main theorem: 196884 emergence, B2 derivation
 │   ├── PhaseLog_Monoid.lean     # Phase-log homomorphism framework
 │   ├── ZPartition.lean          # UFRF partition function Z(τ) and j-invariant
-│   └── Concurrency_BoundedGap.lean  # Supporting concurrency theorem
+│   ├── Concurrency_BoundedGap.lean  # Supporting concurrency theorem
+│   └── UFRF/                    # UFRF parameter layer
+│       ├── Params.lean          # Parameter structure, no-free-parameters proof
+│       └── Moonshine.lean       # Parametric wrappers, invariance theorems
 ├── python/                      # Python validation package
 │   └── ufrf_monster/           # Numerical validation and testing
 ├── docs/                        # Documentation
@@ -203,6 +206,8 @@ Verify `lakefile.lean` has correct Mathlib dependency and all required imports a
 - Monster_Moonshine.lean: 0 sorries
 - PhaseLog_Monoid.lean: 0 sorries
 - ZPartition.lean: 0 sorries
+- UFRF/Params.lean: 0 sorries (no free parameters proven)
+- UFRF/Moonshine.lean: 0 sorries (parameter invariance proven)
 
 ## Division of Responsibilities: Lean vs Python
 
