@@ -37,6 +37,8 @@ This repository contains a formal Lean 4 proof that the Monster dimension **1968
 - **`B2_geometric_identity`**: B2 constant geometrically determined from Monster primes
 - **`j2_harmonic_formula`**: j₂ = 744 × (1 + 2/13) × A(2) × B2
 - **`UFRF.Params.params_unique`**: All UFRF parameters are uniquely determined (no free parameters) — see [NO_FREE_PARAMS.md](NO_FREE_PARAMS.md)
+- **`UFRF.B2_for_all_params`**: B₂ is invariant under Params choice (geometrically fixed)
+- **`UFRF.jCoeff_param_invariant`**: j-function coefficients are invariant under Params choice
 
 ## Quick Start
 
