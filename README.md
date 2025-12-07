@@ -76,27 +76,80 @@ Build completed successfully
 ## Repository Structure
 
 ```
-UFRF-Moonshine/
-├── README.md                    # This file
-├── lakefile.lean                # Lean 4 project configuration
-├── lean-toolchain               # Lean version pinning
-├── lean/                        # Main Lean source files
-│   ├── Monster_Moonshine.lean   # Main theorem: 196884 emergence, B2 derivation
-│   ├── PhaseLog_Monoid.lean     # Phase-log homomorphism framework
-│   ├── ZPartition.lean          # UFRF partition function Z(τ) and j-invariant
-│   ├── Concurrency_BoundedGap.lean  # Supporting concurrency theorem
-│   └── UFRF/                    # UFRF parameter layer
-│       ├── Params.lean          # Parameter structure, no-free-parameters proof
-│       └── Moonshine.lean       # Parametric wrappers, invariance theorems
-├── python/                      # Python validation package
-│   └── ufrf_monster/           # Numerical validation and testing
-├── docs/                        # Documentation
-│   ├── NO_FREE_PARAMS.md        # Formal proof: no free parameters
-│   ├── UFRF_ASSUMPTIONS.md      # UFRF assumptions and axioms
-│   ├── PARAMS_INTEGRATION.md    # Params layer integration notes
-│   └── PARAMS_COMPLETE.md       # Complete Params implementation
-└── scripts/                     # Build/verification scripts
-    └── verify.sh
+lean/
+  Monster_Moonshine.lean        # Monster dimensions, 196884, B₂, prime structure
+  PhaseLog_Monoid.lean          # Phase–log homomorphism (Axiom A8)
+  ZPartition.lean               # UFRF partition function Z(τ) and j = Z + 744
+  Concurrency_BoundedGap.lean   # Bounded-gap concurrency theorem
+  UFRF/
+    Params.lean                 # Global UFRF parameters + uniqueness (no free params)
+    Moonshine.lean              # Parametric jCoeff/B₂ + invariance across Params
+
+docs/
+  NO_FREE_PARAMS.md             # Formal no-free-parameter layer overview
+  UFRF_ASSUMPTIONS.md           # Informal UFRF axioms and physical story
+  PARAMS_INTEGRATION.md         # Params layer integration notes
+  PARAMS_COMPLETE.md            # Complete Params implementation details
+```
+
+## Architecture Overview (3 Layers)
+
+This repo is organized into three conceptual layers:
+
+1. **Geometry / Axioms (UFRF.Params)**
+   - Encodes the global UFRF geometry at the Monster scale:
+     - φ (golden ratio),
+     - 13-position harmonic cycle,
+     - REST / E=B balance position.
+   - Lean theorem `UFRF.Params.params_unique` proves these parameters are
+     **uniquely determined** by the axioms (no free knobs).
+
+2. **Monster Data & Moonshine Mapping**
+   - `lean/Monster_Moonshine.lean`:
+     - defines `monster_coeff : ℤ → ℤ`,
+     - defines `monster_B2 : ℝ`,
+     - proves identities such as `196884 = 47⋅59⋅71 + 1` and the B₂ expression.
+   - `lean/UFRF/Moonshine.lean`:
+     - wraps these as `jCoeff (A : UFRF.Params) n` and `B2 (A)`,
+     - proves invariance theorems such as `B2_for_all_params`.
+
+3. **Analytic & Partition-Function Layer**
+   - `lean/ZPartition.lean`:
+     - defines the UFRF partition function `Z(τ)` as a q-series,
+     - connects it to `j(τ) - 744`,
+     - provides `Z_param (A : Params)` to make the dependence on the
+       global geometry explicit.
+   - `lean/PhaseLog_Monoid.lean` and `lean/Concurrency_BoundedGap.lean`:
+     - provide supporting algebraic/analytic infrastructure
+       (phase–log homomorphism, bounded-gap concurrency).
+
+## Module Dependencies (High-Level)
+
+```mermaid
+graph TD
+  subgraph Geometry & Axioms
+    P[UFRF.Params<br/>phi, 13-cycle, REST<br/>params_unique]
+  end
+
+  subgraph Monster Data
+    M[Monster_Moonshine<br/>monster_coeff, monster_B2]
+  end
+
+  subgraph Moonshine Wrapper
+    UM[UFRF.Moonshine<br/>jCoeff(A,n), B2(A)<br/>invariance theorems]
+  end
+
+  subgraph Analytic Layer
+    Z[ZPartition<br/>Z(τ), Z_param(A,τ), j-744]
+    PL[PhaseLog_Monoid]
+    CG[Concurrency_BoundedGap]
+  end
+
+  P --> UM
+  M --> UM
+  UM --> Z
+  PL --> Z
+  CG --> Z
 ```
 
 ## What's Being Proven
@@ -138,7 +191,30 @@ This means the Monster-related constants in this repo (196884, B₂, etc.) are *
 
 **See**: [docs/NO_FREE_PARAMS.md](docs/NO_FREE_PARAMS.md) for detailed explanation.
 
-## Verification
+## How to Build and Check the Proofs
+
+This project uses Lean 4 and `lake`.
+
+To build all Lean files:
+
+```bash
+lake build
+```
+
+To check a specific file:
+
+```bash
+lake build Monster_Moonshine
+lake build UFRF/Params
+lake build UFRF/Moonshine
+lake build ZPartition
+```
+
+If all builds succeed, then:
+
+* `UFRF.Params.params_unique` is fully proven (no `sorry`),
+* `B2_for_all_params` holds,
+* and the UFRF → Moonshine pipeline is formally verified.
 
 ### Quick Check
 

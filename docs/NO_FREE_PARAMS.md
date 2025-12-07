@@ -1,70 +1,109 @@
-# UFRF – No Free Parameters (Lean Formalization)
+# UFRF – No Free Parameters at the Monster Scale
 
 **Author:** Daniel Charboneau
 
-This document summarizes how the repository formalizes the claim that the UFRF parameters at the Monster scale are uniquely determined by the axioms.
+This document explains how the repo formalizes the claim that the UFRF parameters at the Monster scale are uniquely determined by the axioms – there are **no tunable knobs**.
 
 ## 1. Global Parameter Structure
 
 `lean/UFRF/Params.lean` defines:
 
 - `structure UFRF.Params` with fields:
-  - `phi : ℝ` – golden ratio
-  - `cycleLen : ℕ` – harmonic cycle (13)
-  - `restPhase : ℕ` – REST / E=B balance position
+  - `phi : ℝ` – golden ratio;
+  - `cycleLen : ℕ` – harmonic cycle length (13);
+  - `restPhase : ℕ` – REST / E=B balance position.
 
 - Axioms:
-  - `phi_golden : phi^2 = phi + 1` and `phi_gt_one : 1 < phi`
-  - `cycleLen_13 : cycleLen = 13`
-  - `restPhase_lt : restPhase < cycleLen`
-  - `restPhase_rest : isREST restPhase`
+  - `phi_golden : phi^2 = phi + 1`  
+  - `phi_gt_one : 1 < phi`  
+  - `cycleLen_13 : cycleLen = 13`  
+  - `restPhase_lt : restPhase < cycleLen`  
+  - `restPhase_rest : isREST restPhase`  
 
-`isREST` is defined using the **breathing amplitude**:
+Here `isREST` is a predicate defined via the **breathing amplitude**.
 
-- `breathingAmp (i : ℕ) : ℝ` – symmetric about the midpoint 6.5
+## 2. Breathing Amplitude and REST
+
+We define a breathing amplitude function `breathingAmp (i : ℕ) : ℝ`
+on positions `i = 0,…,12`, symmetric about the midpoint `6.5`. Let:
+
 - `seedPhase : ℕ := 3`
-- `isREST i :↔ i > 6 ∧ breathingAmp i = breathingAmp seedPhase`
+- `mid : ℝ := 6.5`
 
-From this, Lean proves:
+Then:
 
-- `REST_unique : ∀ i, isREST i → i = 10`
+- `breathingAmp 3 = 6/13`
+- For positions `i ≤ 6`, `breathingAmp i = i / 6.5`
+- For positions `i > 6`, `breathingAmp i = (13 - i) / 6.5`
 
-and uses it to set `Params.canonical.restPhase = 10`.
+We say:
 
-## 2. Uniqueness: No Free Parameters
+```lean
+isREST (i : ℕ) : Prop :=
+  i > 6 ∧ breathingAmp i = breathingAmp seedPhase
+```
 
-The main theorem is:
+This encodes:
+
+> REST is the unique position on the "upper" side of the 13-cycle
+> that has the same breathing amplitude as the seed phase at 3.
+
+Lean proves:
+
+```lean
+REST_unique : ∀ i, isREST i → i = 10
+```
+
+Therefore, any `restPhase` satisfying `isREST restPhase` and `< 13`
+must satisfy `restPhase = 10`.
+
+## 3. Canonical Parameters and Uniqueness
+
+We define `UFRF.Params.canonical` by:
+
+* `phi       := (1 + √5)/2`
+* `cycleLen  := 13`
+* `restPhase := 10`
+
+and prove the main uniqueness theorem:
 
 ```lean
 theorem UFRF.Params.params_unique (A : Params) : A = Params.canonical
 ```
 
-This encodes:
+This uses:
 
-* φ is the unique >1 solution of `φ^2 = φ + 1`
-* `cycleLen` must be 13
-* `restPhase` must be the unique REST position (10) where E=B balance holds
+* the uniqueness of the >1 root of `φ^2 = φ + 1`,
+* the axiom `cycleLen_13`,
+* and `REST_unique` plus the `restPhase_rest` axiom.
 
-Thus **any** `Params` satisfying the axioms collapses to `Params.canonical`. There is no remaining degree of freedom.
+Thus any admissible UFRF parameter set collapses to the canonical one.
+There are **no free parameters** at this scale.
 
-## 3. Moonshine Consequences
+## 4. Moonshine Consequences
 
-`lean/UFRF/Moonshine.lean` defines:
+`lean/UFRF/Moonshine.lean` lifts these parameters into the Monster
+Moonshine construction:
 
-* `jCoeff (A : Params) (n : ℤ) : ℤ` – wraps `Monster_Moonshine.monster_coeff`
-* `B2 (A : Params) : ℝ` – wraps `Monster_Moonshine.monster_B2`
+* `jCoeff (A : Params) (n : ℤ) : ℤ` – wraps `Monster_Moonshine.monster_coeff`.
+* `B2 (A : Params) : ℝ` – wraps `Monster_Moonshine.monster_B2`.
 
-and proves invariance:
+Lean proves invariance:
 
-* `jCoeff_param_invariant : ∀ A₁ A₂ n, jCoeff A₁ n = jCoeff A₂ n`
-* `B2_param_invariant : ∀ A₁ A₂, B2 A₁ = B2 A₂`
+```lean
+jCoeff_param_invariant : ∀ A₁ A₂ n, jCoeff A₁ n = jCoeff A₂ n
+B2_param_invariant     : ∀ A₁ A₂, B2 A₁ = B2 A₂
+```
 
-plus concrete values:
+and concrete values:
 
-* `jCoeff_one_for_all : ∀ A, jCoeff A 1 = 196884`
-* `B2_for_all_params : ∀ A, B2 A = 196884 * 169 / (744 * 60)`
+```lean
+jCoeff_one_for_all : ∀ A, jCoeff A 1 = 196884
+B2_for_all_params  : ∀ A, B2 A = 196884 * 169 / (744 * 60)
+```
 
-These theorems show that once the UFRF axioms are accepted, the Moonshine coefficients used in this project are **uniquely fixed** and cannot be tuned.
+Therefore, the Moonshine constants used in this repo are *not* fitted.
+They are uniquely fixed by the UFRF axioms and the Monster data.
 
 ## Files
 
@@ -77,4 +116,3 @@ These theorems show that once the UFRF axioms are accepted, the Moonshine coeffi
 - `docs/PARAMS_INTEGRATION.md` – detailed integration notes
 - `docs/PARAMS_COMPLETE.md` – complete implementation details
 - `docs/UFRF_ASSUMPTIONS.md` – UFRF axioms and assumptions
-
