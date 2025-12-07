@@ -6,6 +6,55 @@ This document clarifies the assumptions and axioms used in the UFRF-Monster Moon
 
 ---
 
+## UFRF Assumptions: Derived vs. Axiomatized
+
+### Overview
+
+This document clarifies what is **derived** versus what is **axiomatized** in the UFRF framework.
+
+### The Derivation Hierarchy
+
+#### Level 0: Physical Law (Not UFRF-specific)
+
+- Maxwell's equations
+- E⊥B perpendicularity
+- Photon as E×B vortex
+
+#### Level 1: Derived from Physics
+
+- Trinity structure {-0.5, 0, +0.5} — from field oscillation
+- Two-plane completion (720°) — from perpendicular field geometry
+- 13-cycle structure — from octave completion
+
+#### Level 2: Axiomatized (Justified by Cross-Domain Success)
+
+- S-invariance of partition function Z(τ)
+- Specific form of projection law
+- Scale hierarchy M = 144 × 10^n
+
+#### Level 3: Proven in Lean 4
+
+- T-invariance: Z(τ+1) = Z(τ)
+- Uniqueness: {47, 59, 71} is the only valid triple
+- Arithmetic: 47 × 59 × 71 + 1 = 196884
+
+### Why This Structure Matters
+
+Critics often ask: "Why should we accept your axioms?"
+
+Answer: The Level 2 axioms are justified by their **cross-domain predictive success**. The same axioms that determine Monster dimensions also correctly predict:
+
+- Nuclear shell gaps
+- Fine structure constant
+- Graphene viscosity-entropy ratio
+- Cosmological mass ratios
+
+If these were arbitrary, they would require different values in different domains. They don't.
+
+**See**: [docs/DERIVATION_CHAIN.md](DERIVATION_CHAIN.md) for the complete derivation of the 13-cycle from electromagnetic first principles.
+
+---
+
 ## S-Invariance Axiom
 
 ### Statement
