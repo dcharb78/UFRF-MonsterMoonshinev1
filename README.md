@@ -36,7 +36,7 @@ This repository contains a formal Lean 4 proof that the Monster dimension **1968
 - **`Z_T_invariant`**: Z(τ+1) = Z(τ) (modular T-invariance)
 - **`B2_geometric_identity`**: B2 constant geometrically determined from Monster primes
 - **`j2_harmonic_formula`**: j₂ = 744 × (1 + 2/13) × A(2) × B2
-- **`UFRF.Params.params_unique`**: All UFRF parameters are uniquely determined (no free parameters) — see [NO_FREE_PARAMS.md](NO_FREE_PARAMS.md)
+- **`UFRF.Params.params_unique`**: All UFRF parameters are uniquely determined (no free parameters) — see [docs/NO_FREE_PARAMS.md](docs/NO_FREE_PARAMS.md)
 - **`UFRF.B2_for_all_params`**: B₂ is invariant under Params choice (geometrically fixed)
 - **`UFRF.jCoeff_param_invariant`**: j-function coefficients are invariant under Params choice
 
@@ -91,11 +91,10 @@ UFRF-Moonshine/
 ├── python/                      # Python validation package
 │   └── ufrf_monster/           # Numerical validation and testing
 ├── docs/                        # Documentation
-│   ├── VALIDATION_STRATEGY.md   # Validation approaches
+│   ├── NO_FREE_PARAMS.md        # Formal proof: no free parameters
 │   ├── UFRF_ASSUMPTIONS.md      # UFRF assumptions and axioms
 │   ├── PARAMS_INTEGRATION.md    # Params layer integration notes
 │   └── PARAMS_COMPLETE.md       # Complete Params implementation
-├── NO_FREE_PARAMS.md            # Formal proof: no free parameters
 └── scripts/                     # Build/verification scripts
     └── verify.sh
 ```
@@ -120,6 +119,24 @@ The proof uses the Unified Field Resonance Framework:
 - **Phase-log homomorphism**: Maps multiplicative structure (primes) to additive structure (phases)
 - **Concurrent cycles**: All primes operate simultaneously, order-independent
 - **Geometric necessity**: Primes emerge to fill "voids" in the structure
+
+## No Free Parameters (Formal Layer)
+
+The files `lean/UFRF/Params.lean` and `lean/UFRF/Moonshine.lean` formalize the claim that UFRF has **no tunable parameters** at the Monster scale:
+
+- `UFRF.Params` packages:
+  - `phi : ℝ` (golden ratio),
+  - `cycleLen : ℕ` (13),
+  - `restPhase : ℕ` (REST index),
+  together with axioms (golden identity, 13-cycle, E=B balance).
+
+- `UFRF.Params.params_unique : ∀ A : Params, A = Params.canonical` proves that once the axioms hold, there is a **unique** admissible parameter set.
+
+- `UFRF.Moonshine` defines `jCoeff (A : Params) n` and `B2 (A : Params)` and proves they are **invariant** under all admissible `A` (e.g. `B2_for_all_params`).
+
+This means the Monster-related constants in this repo (196884, B₂, etc.) are *not* fit parameters; they are uniquely fixed by the UFRF axioms.
+
+**See**: [docs/NO_FREE_PARAMS.md](docs/NO_FREE_PARAMS.md) for detailed explanation.
 
 ## Verification
 

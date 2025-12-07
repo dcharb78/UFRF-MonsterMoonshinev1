@@ -84,10 +84,19 @@ The structure q⁻¹ + 196884 q + ... follows from these coefficient values, whi
 
 ---
 
+## Global Parameter Uniqueness
+
+For a formal implementation of these axioms at the Monster scale (golden ratio, 13-cycle, REST/E=B balance), see:
+
+- `lean/UFRF/Params.lean` – parameter structure and uniqueness theorem
+- `docs/NO_FREE_PARAMS.md` – high-level summary
+
+The `UFRF.Params.params_unique` theorem proves that all UFRF parameters are uniquely determined by the axioms—there are no free parameters to tune.
+
 ## Summary
 
 The formalization makes a clear distinction between:
-1. **What is proven** (T-invariance, coefficient values, principal part structure)
+1. **What is proven** (T-invariance, coefficient values, principal part structure, parameter uniqueness)
 2. **What is assumed** (S-invariance from UFRF physics)
 3. **What is outside scope** (Monster group/VOA construction)
 
