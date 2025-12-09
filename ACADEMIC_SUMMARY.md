@@ -46,10 +46,6 @@ lake build
 ./scripts/verify.sh  # Confirms 0 sorries
 ```
 
-## Contact
-
-For questions or collaboration: [your contact info]
-
 ## Documentation
 
 - `docs/DERIVATION_CHAIN.md` — Why 13 is derived, not arbitrary
