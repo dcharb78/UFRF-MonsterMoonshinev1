@@ -11,8 +11,6 @@ Permanent citable archive: https://doi.org/10.5281/zenodo.XXXXXXX (replace with 
 
 If this work ever helps you or sparks joy and you feel like sending some energy back:
 
-- One-time coffee ☕ https://ko-fi.com/dcharb78
-- Monthly support ❤️ https://github.com/sponsors/dcharb78
 
 Every dollar goes straight to more open-source Lean proofs and UFRF research.
 
